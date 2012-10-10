@@ -66,12 +66,12 @@ class OpenIdDelegationPlugin
     
     public function providerField()
     {
-        echo '<input name="openid_delegation_provider" id="openid_delegation_provider" type="text" value="' . esc_attr(get_option('openid_delegation_provider')) . '" size=20 maxlength=40 /> Example: http://www.myopenid.com/server';
+        echo '<input name="openid_delegation_provider" id="openid_delegation_provider" type="text" value="' . esc_attr(get_option('openid_delegation_provider')) . '" size=20 maxlength=40 /> Examples: http://www.myopenid.com/server or https://www.google.com/accounts/o8/ud';
     }
 
     public function delegateField()
     {
-        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 maxlength=40 /> Example: http://YOURUSERNAME.myopenid.com';
+        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 maxlength=40 /> Examples: http://YOURUSERNAME.myopenid.com or https://plus.google.com/YOURID';
     }
     
     public function renderMetaTags()
