@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenID Delegation\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-10 15:36-0300\n"
+"PO-Revision-Date: 2012-10-10 15:36-0300\n"
+"Last-Translator: Rodrigo Primo <rodrigo@hacklab.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: openid-delegation.php:37
+msgid "OpenID Delegation"
+msgstr ""
+
+#: openid-delegation.php:44
+msgid "OpenID Provider URL"
+msgstr ""
+
+#: openid-delegation.php:52
+msgid "OpenID Delegate URL"
+msgstr ""
+
+#: openid-delegation.php:64
+msgid "Please enter your OpenID provider URL and your OpenID delegate URL."
+msgstr ""
+
+#: openid-delegation.php:69
+msgid ""
+"Examples: http://www.myopenid.com/server or https://www.google.com/accounts/o8/ud"
+msgstr ""
+
+#: openid-delegation.php:74
+msgid ""
+"Examples: http://YOURUSERNAME.myopenid.com or https://plus.google.com/YOURID"
+msgstr ""
