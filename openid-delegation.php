@@ -55,7 +55,8 @@ class OpenIdDelegationPlugin
             'openid_delegation_section'
         );
     
-        register_setting('general', 'openid_delegation_section');
+        register_setting('general', 'openid_delegation_provider');
+        register_setting('general', 'openid_delegation_delegate');
     }
     
     public function settingsDescription()
