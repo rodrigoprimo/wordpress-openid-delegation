@@ -71,7 +71,7 @@ class OpenIdDelegationPlugin
 
     public function delegateField()
     {
-        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com or https://plus.google.com/YOURID');
+        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com or https://profiles.google.com/YOURID');
     }
     
     public function renderMetaTags()
