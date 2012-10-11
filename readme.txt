@@ -5,11 +5,11 @@ Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: 0.1
 
-A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID with the provider you choose.
+A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID identifier with the provider you choose.
 
 == Description ==
 
-A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID with the provider you choose.
+A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID identifier with the provider you choose.
 
 This plugins does not allow you to use your Wordpress installation as a OpenID consumer or provider.
 
