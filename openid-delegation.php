@@ -26,59 +26,75 @@ Author URI: http://hacklab.com.br/
 License: GPL2
 */
 
+$includePath = dirname(__FILE__) . '/lib';
+set_include_path($includePath . PATH_SEPARATOR . get_include_path());
+
+require_once("Auth/OpenID/Discover.php");
+require_once("Auth/Yadis/Yadis.php");
+
 class OpenIdDelegationPlugin
 {
+    /**
+     * Load plugin i18n files and add plugin options
+     * to the Admin -> Settings -> General page.
+     * 
+     * @return null
+     */
     public function init()
     {
         load_plugin_textdomain('openid-delegation', FALSE, dirname(plugin_basename(__FILE__)) . '/languages/');
         
         add_settings_section(
             'openid_delegation_section',
-            __('OpenID Delegation'),
+            __('OpenID Delegation', 'openid-delegation'),
             array($this, 'settingsDescription'),
             'general'
         );
 
         add_settings_field(
-            'openid_delegation_provider',
-            __('OpenID Provider URL'),
-            array($this, 'providerField'),
+            'openid_delegation_url',
+            __('OpenID URL', 'openid-delegation'),
+            array($this, 'openidUrlField'),
             'general',
             'openid_delegation_section'
         );
         
-        add_settings_field(
-            'openid_delegate_url',
-            __('OpenID Delegate URL'),
-            array($this, 'delegateField'),
-            'general',
-            'openid_delegation_section'
-        );
-    
-        register_setting('general', 'openid_delegation_provider');
-        register_setting('general', 'openid_delegation_delegate');
+        register_setting('general', 'openid_delegation_url', array($this, 'validate'));
     }
     
+    /**
+     * Output the header of the plugin settings section.
+     * 
+     * @return null
+     */
     public function settingsDescription()
     {
-        echo '<p>' . __('Please enter your OpenID provider URL and your OpenID delegate URL.') . '</p>';
+        echo '<p>' . __('Please enter your OpenID URL.', 'openid-delegation') . '</p>';
     }
     
-    public function providerField()
+    /**
+     * Output the input field for the user OpenID URL in the plugin
+     * settings section.
+     * 
+     * @return null
+     */
+    public function openidUrlField()
     {
-        echo '<input name="openid_delegation_provider" id="openid_delegation_provider" type="text" value="' . esc_attr(get_option('openid_delegation_provider')) . '" size=20 /> ' . __('Examples: http://www.myopenid.com/server or https://www.google.com/accounts/o8/ud');
-    }
-
-    public function delegateField()
-    {
-        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com or https://profiles.google.com/YOURID');
+        echo '<input name="openid_delegation_url" id="openid_delegation_url" type="text" value="' . esc_attr(get_option('openid_delegation_url')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com', 'openid-delegation');
     }
     
+    /**
+     * If there is OpenID URL in the database output to the
+     * <head> section of the HTML of the home page the meta tags
+     * required for OpenID delegation.
+     * 
+     * @return null
+     */
     public function renderMetaTags()
     {
         if (is_home()) {
             $provider = get_option('openid_delegation_provider');
-            $delegate = get_option('openid_delegation_delegate');
+            $delegate = get_option('openid_delegation_url');
             if ($provider && $delegate) {
                 echo "\n<link rel='openid.server' href='$provider' />\n";
                 echo "<link rel='openid.delegate' href='$delegate' />\n";
@@ -86,6 +102,30 @@ class OpenIdDelegationPlugin
                 echo "<link rel='openid2.local_id' href='$delegate' />\n\n";
             }
         }
+    }
+    
+    /**
+     * Check if user supplied URL is a valid OpenID and
+     * get the URL provider from it.
+     * 
+     * @param string $identifier user supplied OpenID identifier
+     * @return string
+     */
+    public function validate($identifier)
+    {
+        $oldIdentifier = get_option('openid_delegation_url');
+        $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();
+        list($normalized_identifier, $endpoints) = Auth_OpenID_discover($identifier, $fetcher);
+        
+        if (!empty($identifier) && empty($endpoints)) {
+            add_settings_error('openid_delegation_url', 'error', sprintf(__('No OpenID services discovered for %s.', 'openid-delegation'), $identifier));
+            
+            return $oldIdentifier;
+        }
+
+        update_option('openid_delegation_provider', $endpoints[0]->server_url);
+        
+        return $normalized_identifier;
     }
 }
 
