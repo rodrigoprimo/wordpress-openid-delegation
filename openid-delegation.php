@@ -26,22 +26,22 @@ Author URI: http://hacklab.com.br/
 License: GPL2
 */
 
-//TODO: internationalize the plugin
-
 class OpenIdDelegationPlugin
 {
     public function init()
     {
+        load_plugin_textdomain('openid-delegation', FALSE, dirname(plugin_basename(__FILE__)) . '/languages/');
+        
         add_settings_section(
             'openid_delegation_section',
-            'OpenID Delegation',
+            __('OpenID Delegation'),
             array($this, 'settingsDescription'),
             'general'
         );
 
         add_settings_field(
             'openid_delegation_provider',
-            'OpenID Provider URL',
+            __('OpenID Provider URL'),
             array($this, 'providerField'),
             'general',
             'openid_delegation_section'
@@ -49,7 +49,7 @@ class OpenIdDelegationPlugin
         
         add_settings_field(
             'openid_delegate_url',
-            'OpenID Delegate URL',
+            __('OpenID Delegate URL'),
             array($this, 'delegateField'),
             'general',
             'openid_delegation_section'
@@ -61,17 +61,17 @@ class OpenIdDelegationPlugin
     
     public function settingsDescription()
     {
-        echo '<p>Please enter your OpenID provider URL and your OpenID delegate URL.</p>';
+        echo '<p>' . __('Please enter your OpenID provider URL and your OpenID delegate URL.') . '</p>';
     }
     
     public function providerField()
     {
-        echo '<input name="openid_delegation_provider" id="openid_delegation_provider" type="text" value="' . esc_attr(get_option('openid_delegation_provider')) . '" size=20 /> Examples: http://www.myopenid.com/server or https://www.google.com/accounts/o8/ud';
+        echo '<input name="openid_delegation_provider" id="openid_delegation_provider" type="text" value="' . esc_attr(get_option('openid_delegation_provider')) . '" size=20 /> ' . __('Examples: http://www.myopenid.com/server or https://www.google.com/accounts/o8/ud');
     }
 
     public function delegateField()
     {
-        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 /> Examples: http://YOURUSERNAME.myopenid.com or https://plus.google.com/YOURID';
+        echo '<input name="openid_delegation_delegate" id="openid_delegation_delegate" type="text" value="' . esc_attr(get_option('openid_delegation_delegate')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com or https://plus.google.com/YOURID');
     }
     
     public function renderMetaTags()
