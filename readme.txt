@@ -13,6 +13,8 @@ A simple plugin that adds the required meta tags to allow you to use your blog U
 
 This plugins does not allow you to use your Wordpress installation as a OpenID consumer or provider.
 
+It was built based on MyOpenID Delegation plugin (https://github.com/benatkin/wordpress-myopenid-delegation).
+
 == Installation ==
 
 Use the standard WordPress plugin installation procedure. After installing and activating, go to
