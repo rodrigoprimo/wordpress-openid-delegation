@@ -82,8 +82,8 @@ class OpenIdDelegationPlugin
             if ($provider && $delegate) {
                 echo "\n<link rel='openid.server' href='$provider' />\n";
                 echo "<link rel='openid.delegate' href='$delegate' />\n";
-                echo "<link rel='openid2.local_id' href='$provider' />\n";
-                echo "<link rel='openid2.provider' href='$delegate' />\n\n";
+                echo "<link rel='openid2.provider' href='$provider' />\n";
+                echo "<link rel='openid2.local_id' href='$delegate' />\n\n";
             }
         }
     }
