@@ -80,7 +80,7 @@ class OpenIdDelegationPlugin
      */
     public function openidUrlField()
     {
-        echo '<input name="openid_delegation_url" id="openid_delegation_url" type="text" value="' . esc_attr(get_option('openid_delegation_url')) . '" size=20 /> ' . __('Examples: http://YOURUSERNAME.myopenid.com', 'openid-delegation');
+        echo '<input name="openid_delegation_url" id="openid_delegation_url" type="text" value="' . esc_attr(get_option('openid_delegation_url')) . '" size=20 /> ' . __('Example: http://YOURUSERNAME.myopenid.com', 'openid-delegation');
     }
     
     /**
