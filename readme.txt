@@ -20,3 +20,17 @@ It was built based on MyOpenID Delegation plugin (https://github.com/benatkin/wo
 Use the standard WordPress plugin installation procedure. After installing and activating, go to
 the Settings > General to configure it. Once configured, the plugin will add meta tags to the header of your
 blog home page to delegate OpenID to your OpenID provider.
+
+== Screenshots ==
+
+1. Configure the plugin in the Settings -> General section
+
+== Changelog ==
+
+Project maintined on github at [rodrigoprimo/wordpress-openid-delegation](https://github.com/rodrigoprimo/wordpress-openid-delegation/).
+
+= Version 1.0 (Oct 15, 2012) =
+
+Initial release.
+
+
