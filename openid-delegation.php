@@ -20,7 +20,7 @@
 Plugin Name: OpenID Delegation
 Plugin URI: https://github.com/rodrigosprimo/wordpress-openid-delegation
 Description: Delegates your blog URL to the OpenID provider you choose.
-Version: 1.0
+Version: 1.1
 Author: Rodrigo Primo
 Author URI: http://hacklab.com.br/
 License: GPL2
@@ -95,11 +95,17 @@ class OpenIdDelegationPlugin
         if (is_home()) {
             $provider = get_option('openid_delegation_provider');
             $delegate = get_option('openid_delegation_url');
+            $xrdsLocation = get_option('openid_delegation_xrds_location');
+            
             if ($provider && $delegate) {
                 echo "\n<link rel='openid.server' href='$provider' />\n";
                 echo "<link rel='openid.delegate' href='$delegate' />\n";
                 echo "<link rel='openid2.provider' href='$provider' />\n";
                 echo "<link rel='openid2.local_id' href='$delegate' />\n\n";
+                
+                if (!empty($xrdsLocation)) {
+                    echo "<meta http-equiv='X-XRDS-Location' content='$xrdsLocation' />";
+                }
             }
         }
     }
@@ -115,6 +121,8 @@ class OpenIdDelegationPlugin
     {
         $oldIdentifier = get_option('openid_delegation_url');
         $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();
+        $response = Auth_Yadis_Yadis::discover($identifier, $fetcher);
+        
         list($normalized_identifier, $endpoints) = Auth_OpenID_discover($identifier, $fetcher);
         
         if (!empty($identifier) && empty($endpoints)) {
@@ -124,6 +132,10 @@ class OpenIdDelegationPlugin
         }
 
         update_option('openid_delegation_provider', $endpoints[0]->server_url);
+        
+        if (!empty($response->xrds_uri)) {
+            update_option('openid_delegation_xrds_location', $response->xrds_uri);
+        }
         
         return $normalized_identifier;
     }
