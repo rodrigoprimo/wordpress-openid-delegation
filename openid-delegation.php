@@ -20,7 +20,7 @@
 Plugin Name: OpenID Delegation
 Plugin URI: https://github.com/rodrigosprimo/wordpress-openid-delegation
 Description: Delegates your blog URL to the OpenID provider you choose.
-Version: 1.0
+Version: 1.1
 Author: Rodrigo Primo
 Author URI: http://hacklab.com.br/
 License: GPL2
