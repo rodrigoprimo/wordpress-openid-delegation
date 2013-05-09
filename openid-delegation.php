@@ -92,7 +92,7 @@ class OpenIdDelegationPlugin
      */
     public function renderMetaTags()
     {
-        if (is_home()) {
+        if (is_front_page()) {
             $provider = get_option('openid_delegation_provider');
             $delegate = get_option('openid_delegation_url');
             $xrdsLocation = get_option('openid_delegation_xrds_location');
