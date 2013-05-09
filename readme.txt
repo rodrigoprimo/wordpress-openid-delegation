@@ -3,7 +3,7 @@ Contributors: rodrigosprimo
 Tags: openid, identity, delegation
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 1.1.1
+Stable tag: 1.2
 
 A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID identifier with the provider you choose.
 
@@ -28,6 +28,10 @@ blog home page to delegate OpenID to your OpenID provider.
 == Changelog ==
 
 Project maintined on github at [rodrigoprimo/wordpress-openid-delegation](https://github.com/rodrigoprimo/wordpress-openid-delegation/).
+
+= Version 1.2 (May 9, 2013) =
+
+Add support to WP static front page (thanks pkra)
 
 = Version 1.1 (Apr 29, 2013) =
 
