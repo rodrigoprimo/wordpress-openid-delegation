@@ -2,7 +2,7 @@
 Contributors: rodrigosprimo
 Tags: openid, identity, delegation
 Requires at least: 3.0
-Tested up to: 3.5.1
+Tested up to: 3.8
 Stable tag: 1.2
 
 A simple plugin that adds the required meta tags to allow you to use your blog URL as your OpenID identifier with the provider you choose.
